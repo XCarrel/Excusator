@@ -1,0 +1,61 @@
+openapi: 3.0.0
+info:
+  description: "This swagger documents the Excusator api."
+  version: "v1.0"
+  title: "Excusator"
+tags:
+  - name: "absences"
+    description: "Routes related to the absences user"
+paths:
+  /absences:
+    get:
+      tags:
+        - "absences"
+      summary: "Get the list of absences"
+      description: "Get the list of absences"
+      responses:
+        '200':    # status code
+          description: User model serialized to JSON
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Absence"
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: base64
+  schemas:
+    User:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+        firstname:
+          type: "string"
+        lastname:
+          type: "string"
+        role:
+          type: "integer"
+        adult:
+          type: "integer"
+        guardian_id:
+          type: "integer"
+    Absence:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+        student_id:
+          type: "integer"
+        from:
+          type: "string"
+        to:
+          type: "string"
+        observer_id:
+          type: "integer"
+        state:
+          type: "integer"

@@ -1,0 +1,13 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  <h1>{{ student.firstname }} {{ student.lastname }}</h1>
+  <h3>Absences</h3>
+  {% if student.absences.length > 0 %}
+    {% for absence in student.absences %}
+      <p>du {{ formatDate(absence.from,"ddd D MMMM YYYY, H:mm") }} au {{ formatDate(absence.to,"ddd D MMMM YYYY, H:mm") }} {{ absence.state == 0 ? "A justifier" : absence.state == 1 ? "A confirmer" : "Justifiée" }}</p>
+    {% endfor %}
+  {% else %}
+    <p>(aucune)</p>
+  {% endif %}
+{% endblock %}
